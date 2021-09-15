@@ -7,12 +7,13 @@ import Favorites from './pages/Favorites';
 import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 import NotFound from './pages/NotFound';
+import Header from './components/header';
 
 class App extends React.Component {
   render() {
     return (
       <div>
-        <p>TrybeTunes</p>
+        <Header />
         <BrowserRouter>
           <Route exact path="/" component={ Login } />
           <Route path="/search" component={ Search } />
@@ -20,7 +21,7 @@ class App extends React.Component {
           <Route path="/favorites" component={ Favorites } />
           <Route path="/profile" component={ Profile } />
           <Route path="/profile/edit" component={ ProfileEdit } />
-          <Route path="" component={ NotFound } />
+          <Route path="*" component={ NotFound } />
         </BrowserRouter>
       </div>
     );
