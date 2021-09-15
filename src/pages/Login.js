@@ -27,15 +27,16 @@ class Login extends React.Component {
   }
 
   handleChange= ({ target }) => {
-    this.setState({ name: target.value });
+    this.setState({ [target.id]: target.value });
   }
 
   loginForms = (name) => (
     <div data-testid="page-login">
       <form>
-        <label htmlFor="text">
+        <label htmlFor="name">
           <input
             type="text"
+            id="name"
             value={ name }
             onChange={ this.handleChange }
             data-testid="login-name-input"
