@@ -36,8 +36,8 @@ class Search extends React.Component {
   }
 
   renderSearch = (artist) => (
-    <forms>
-      <label htmlFor="artist">
+    <form>
+      <label htmlFor="artit">
         <input
           type="text"
           id="artist"
@@ -55,7 +55,7 @@ class Search extends React.Component {
         Procurar
 
       </button>
-    </forms>)
+    </form>)
 
     mapAlbum = (albums) => albums.map((album) => (
       <div className="album-container" key={ album.collectionId }>
