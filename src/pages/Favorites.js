@@ -41,7 +41,7 @@ class Favorites extends React.Component {
   renderFavorites = () => {
     this.fetchGetFavoriteSongs();
     const { favorite } = this.state;
-    console.log(favorite);
+
     return (
       <div>
         {favorite.map((music) => (<MusicCard

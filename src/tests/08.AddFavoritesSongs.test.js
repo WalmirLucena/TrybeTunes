@@ -105,7 +105,7 @@ describe('8 - Crie o mecanismo para adicionar músicas na lista de músicas favo
         () => screen.getAllByText('Carregando...'),
         { timeout: 3000 },
       );
-
+      
       expect(screen.queryAllByRole('checkbox', { checked: true })).toHaveLength(1);
       expect(screen.queryAllByRole('checkbox', { checked: false })).toHaveLength(3);
 

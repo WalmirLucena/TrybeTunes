@@ -50,19 +50,14 @@ class Album extends React.Component {
     await (checkedValue
       ? addSong(selectedMusic) : removeSong(selectedMusic));
     this.fetchGetFavorites();
-    this.setState({ isLoading: false });
   }
 
   handleChange = ({ target }) => {
-    console.log(target.name);
-    console.log(Number(target.name));
-    this.handleFavorites(target.checked, parseInt(target.id, 10));
+    this.handleFavorites(target.checked, parseInt(target.value, 10));
   }
 
   renderMusicList = () => {
     const { musics, favorites } = this.state;
-    console.log(favorites);
-
     return (
       <div>
         <h3 data-testid="artist-name">{musics[0].artistName}</h3>

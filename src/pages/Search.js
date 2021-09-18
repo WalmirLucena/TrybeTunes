@@ -37,7 +37,8 @@ class Search extends React.Component {
 
   renderSearch = (artist) => (
     <form>
-      <label htmlFor="artit">
+      <label htmlFor="artist">
+
         <input
           type="text"
           id="artist"
