@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -41,6 +40,9 @@ class MusicCard extends React.Component {
 
 MusicCard.propTypes = {
   music: PropTypes.objectOf(PropTypes.any).isRequired,
+  checked: PropTypes.bool.isRequired,
+  handleChange: PropTypes.func.isRequired,
+
 };
 
 export default MusicCard;
