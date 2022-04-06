@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createUser } from '../services/userAPI';
 import Loading from './Loading';
+import '../styles/login.css';
+import logoWhite from '../img/logoWhite.png';
 
 const MIN_LENGTH = 3;
 
@@ -31,13 +33,17 @@ class Login extends React.Component {
   }
 
   loginForms = (name) => (
-    <div data-testid="page-login">
+    <div data-testid="page-login" className="login-container">
+      <div className="logo-container">
+        <img src={ logoWhite } alt="Logo Trybe" />
+      </div>
       <form>
         <label htmlFor="name">
           <input
             type="text"
             id="name"
             value={ name }
+            placeholder="Nome"
             onChange={ this.handleChange }
             data-testid="login-name-input"
           />

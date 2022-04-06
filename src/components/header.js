@@ -1,7 +1,9 @@
 import React from 'react';
-import { BrowserRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
 import Loading from '../pages/Loading';
+import '../styles/header.css';
+import logo from '../img/logo.png';
 
 class Header extends React.Component {
   constructor() {
@@ -26,14 +28,38 @@ class Header extends React.Component {
     }
 
     renderHeader = (user) => (
-      <header data-testid="header-component">
-        Header
+      <header data-testid="header-component" className="header">
+        <div className="img-container">
+          <img src={ logo } alt="logo trybe" />
+        </div>
         <span data-testid="header-user-name">{user.name}</span>
-        <BrowserRouter>
-          <Link to="/search" data-testid="link-to-search">Search</Link>
-          <Link to="/favorites" data-testid="link-to-favorites">Favorites</Link>
-          <Link to="/profile" data-testid="link-to-profile">Profile</Link>
-        </BrowserRouter>
+        <div className="break" />
+        <nav>
+          <Link
+            to="/search"
+            className="link-style"
+            data-testid="link-to-search"
+          >
+            Pesquisa
+
+          </Link>
+          <Link
+            to="/favorites"
+            className="link-style"
+            data-testid="link-to-favorites"
+          >
+            Favoritas
+
+          </Link>
+          <Link
+            to="/profile"
+            className="link-style"
+            data-testid="link-to-profile"
+          >
+            Perfil
+
+          </Link>
+        </nav>
       </header>)
 
     render() {

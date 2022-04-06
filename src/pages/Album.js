@@ -4,6 +4,8 @@ import getMusics from '../services/musicsAPI';
 import { addSong, removeSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
 import MusicCard from './MusicCard';
+import Header from '../components/header';
+import '../styles/album.css';
 
 class Album extends React.Component {
   constructor() {
@@ -59,23 +61,29 @@ class Album extends React.Component {
   renderMusicList = () => {
     const { musics, favorites } = this.state;
     return (
-      <div>
-        <h3 data-testid="artist-name">{musics[0].artistName}</h3>
-        <h4 data-testid="album-name">{musics[0].collectionName}</h4>
-        {musics.slice(1).map((music) => (
-          <MusicCard
-            key={ music.trackId }
-            music={ music }
-            checked={ favorites.some((favSong) => favSong.trackId === music.trackId) }
-            handleChange={ this.handleChange }
-          />))}
+      <div className="album-content">
+        <div className="album-info">
+          <img src={ musics[0].artworkUrl100 } alt="album" />
+          <h2 data-testid="artist-name">{musics[0].artistName}</h2>
+          <h3 data-testid="album-name">{musics[0].collectionName}</h3>
+        </div>
+        <div className="music-container">
+          {musics.slice(1).map((music) => (
+            <MusicCard
+              key={ music.trackId }
+              music={ music }
+              checked={ favorites.some((favSong) => favSong.trackId === music.trackId) }
+              handleChange={ this.handleChange }
+            />))}
+        </div>
       </div>);
   }
 
   render() {
     const { isLoading } = this.state;
     return (
-      <div data-testid="page-album">
+      <div data-testid="page-album" className="page-album">
+        <Header />
         {isLoading ? <Loading /> : this.renderMusicList()}
 
       </div>

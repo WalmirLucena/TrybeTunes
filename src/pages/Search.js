@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import Loading from './Loading';
+import Header from '../components/header';
+import '../styles/search.css';
 
 const MIN_LENGTH = 2;
 
@@ -36,30 +38,33 @@ class Search extends React.Component {
   }
 
   renderSearch = (artist) => (
-    <form>
-      <label htmlFor="artist">
+    <div className="form-container">
+      <form>
+        <label htmlFor="artist">
 
-        <input
-          type="text"
-          id="artist"
-          value={ artist }
-          onChange={ this.handleChange }
-          data-testid="search-artist-input"
-        />
-      </label>
-      <button
-        type="button"
-        data-testid="search-artist-button"
-        disabled={ artist.length < MIN_LENGTH }
-        onClick={ this.handleClick }
-      >
-        Procurar
+          <input
+            type="text"
+            id="artist"
+            value={ artist }
+            placeholder="Nome do Artista"
+            onChange={ this.handleChange }
+            data-testid="search-artist-input"
+          />
+        </label>
+        <button
+          type="button"
+          data-testid="search-artist-button"
+          disabled={ artist.length < MIN_LENGTH }
+          onClick={ this.handleClick }
+        >
+          Procurar
 
-      </button>
-    </form>)
+        </button>
+      </form>
+    </div>)
 
     mapAlbum = (albums) => albums.map((album) => (
-      <div className="album-container" key={ album.collectionId }>
+      <div className="album" key={ album.collectionId }>
         <Link
           to={ `/album/${album.collectionId}` }
           data-testid={ `link-to-album-${album.collectionId}` }
@@ -69,26 +74,31 @@ class Search extends React.Component {
             src={ album.artworkUrl100 }
             alt={ `${album.artistName} album` }
           />
-          <div>
-            <h4>{album.collectionName}</h4>
-            <p>{album.artistName}</p>
-          </div>
         </Link>
+        <div>
+          <h4>{album.collectionName}</h4>
+          <p>{album.artistName}</p>
+        </div>
+
       </div>))
 
     renderAlbumsResult = ({ albums, lastArtist }) => {
       if (lastArtist !== '' && albums.length === 0) {
-        return <h1>Nenhum álbum foi encontrado</h1>;
+        return <h1 className="notFound">Nenhum álbum foi encontrado</h1>;
       }
       if (lastArtist !== '') {
         return (
           <section>
-            <h2>
-              Resultado de álbuns de:
-              {' '}
-              {lastArtist}
-            </h2>
-            {this.mapAlbum(albums)}
+            <div className="h2-container">
+              <h2>
+                Resultado de álbuns de:
+                {' '}
+                {lastArtist}
+              </h2>
+            </div>
+            <div className="album-container">
+              {this.mapAlbum(albums)}
+            </div>
           </section>
         );
       }
@@ -98,6 +108,7 @@ class Search extends React.Component {
       const { artist, isLoading } = this.state;
       return (
         <div data-testid="page-search">
+          <Header />
           {isLoading ? <Loading /> : this.renderSearch(artist)}
           {this.renderAlbumsResult(this.state)}
         </div>

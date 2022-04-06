@@ -6,7 +6,7 @@ class MusicCard extends React.Component {
       const { music, checked, handleChange } = this.props;
       const { previewUrl, trackName, trackId } = music;
       return (
-        <div>
+        <div className="music-content">
           <h4>{trackName}</h4>
           <audio data-testid="audio-component" src={ previewUrl } controls>
             <track kind="captions" />
